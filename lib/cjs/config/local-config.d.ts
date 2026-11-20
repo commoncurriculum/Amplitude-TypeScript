@@ -1,0 +1,32 @@
+import { Config, Logger, FetchTransport, LogLevel } from '@amplitude/analytics-core';
+import { SessionReplayOptions, StoreType } from '../typings/session-replay';
+import { SessionReplayLocalConfig as ISessionReplayLocalConfig, CrossOriginIframesConfig, InteractionConfig, PrivacyConfig, SessionReplayPerformanceConfig, SessionReplayVersion } from './types';
+export declare const getDefaultConfig: () => {
+    flushMaxRetries: number;
+    logLevel: LogLevel;
+    loggerProvider: Logger;
+    transportProvider: FetchTransport;
+};
+export declare class SessionReplayLocalConfig extends Config implements ISessionReplayLocalConfig {
+    apiKey: string;
+    sampleRate: number;
+    privacyConfig?: PrivacyConfig;
+    interactionConfig?: InteractionConfig;
+    debugMode?: boolean;
+    configServerUrl?: string;
+    trackServerUrl?: string;
+    shouldInlineStylesheet?: boolean;
+    version?: SessionReplayVersion;
+    storeType: StoreType;
+    performanceConfig?: SessionReplayPerformanceConfig;
+    useWebWorker?: boolean;
+    applyBackgroundColorToBlockedElements?: boolean;
+    enableUrlChangePolling?: boolean;
+    urlChangePollingInterval?: number;
+    captureDocumentTitle?: boolean;
+    captureAdoptedStyleSheets?: boolean;
+    crossOriginIframes?: CrossOriginIframesConfig;
+    fullSnapshotIntervalMs?: number;
+    constructor(apiKey: string, options: SessionReplayOptions);
+}
+//# sourceMappingURL=local-config.d.ts.map
