@@ -83,7 +83,10 @@ export interface SessionIdentifiers {
     sessionReplayId?: string;
 }
 export type SessionReplayOptions = Omit<Partial<SessionReplayLocalConfig & SessionIdentifiers>, 'apiKey'> & {
-    /** An rrweb the app runs itself, used in place of `@amplitude/rrweb-record`. */
+    /**
+     * An rrweb the app runs itself, used in place of `@amplitude/rrweb-record`. It is called with the
+     * same options, privacy settings included, and must apply them.
+     */
     record?: RecordFunction;
 };
 export interface AmplitudeSessionReplay {

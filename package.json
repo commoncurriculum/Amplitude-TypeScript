@@ -30,8 +30,8 @@
     "idb": "8.0.0",
     "tslib": "^2.4.1",
     "@amplitude/analytics-client-common": "2.4.47",
-    "@amplitude/targeting": "0.2.0",
     "@amplitude/analytics-core": "2.48.1",
+    "@amplitude/targeting": "0.2.0",
     "@amplitude/analytics-types": "2.11.1"
   },
   "devDependencies": {
