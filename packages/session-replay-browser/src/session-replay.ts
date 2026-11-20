@@ -283,6 +283,9 @@ export class SessionReplay implements AmplitudeSessionReplay {
       options.sessionId !== undefined
         ? getOrInitReplayStartTime(apiKey, options.sessionId, now, this.loggerProvider) ?? now
         : now;
+    if (options.record) {
+      this.recordFunction = options.record;
+    }
     this.joinedConfigGenerator = await createSessionReplayJoinedConfigGenerator(apiKey, options);
     const { joinedConfig, localConfig, remoteConfig } = await this.joinedConfigGenerator.generateJoinedConfig();
     this.config = joinedConfig;

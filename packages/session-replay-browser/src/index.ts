@@ -12,6 +12,7 @@ export const {
 } = sessionReplay;
 export { SessionReplayOptions, StoreType } from './typings/session-replay';
 export { SafeLoggerProvider } from './logger';
+export type { RecordFunction } from './utils/rrweb';
 export { AmplitudeSessionReplay } from './typings/session-replay';
 export {
   SendEventsRequest,

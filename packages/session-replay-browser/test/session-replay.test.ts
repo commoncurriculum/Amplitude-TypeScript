@@ -2973,6 +2973,16 @@ describe('SessionReplay', () => {
       expect(eventsManagerInitSpy).not.toHaveBeenCalled();
       expect(recordFunction).toHaveBeenCalledTimes(1);
     });
+    test('should record with the record function passed to init', async () => {
+      jest.spyOn(SessionReplay.prototype, 'getRecordFunction' as any).mockRestore();
+      const recordFunction = createMockRecordFunction();
+
+      await sessionReplay.init(apiKey, { ...mockOptions, record: recordFunction }).promise;
+      await jest.runAllTimersAsync();
+      await sessionReplay.initialize(false);
+
+      expect(recordFunction).toHaveBeenCalled();
+    });
 
     test.each([
       { enabled: true, expectedLength: 2 }, // scroll fn + beacon fn
