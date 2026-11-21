@@ -7,15 +7,22 @@ export type EventsManagerWithBeacon<Type extends EventType> = AmplitudeSessionRe
      * Used to populate a sendBeacon payload when the page is unloading.
      */
     getBeaconEvents(): string[];
+    /**
+     * Drops all pending beacon events. Used when the session is decided to be below
+     * the min duration threshold so its events don't leak into a later session's beacon.
+     */
+    dropPendingBeaconEvents(): void;
     trackDestination: SessionReplayTrackDestination;
 };
-export declare const createEventsManager: <Type extends EventType>({ config, minInterval, maxInterval, type, payloadBatcher, storeType, trackDestinationWorkerScript, }: {
+export declare const createEventsManager: <Type extends EventType>({ config, minInterval, maxInterval, maxPersistedEventsSize, type, payloadBatcher, storeType, trackDestinationWorkerScript, shouldSend, }: {
     config: SessionReplayJoinedConfig;
     type: Type;
     minInterval?: number | undefined;
     maxInterval?: number | undefined;
+    maxPersistedEventsSize?: number | undefined;
     payloadBatcher?: PayloadBatcher | undefined;
     storeType: StoreType;
     trackDestinationWorkerScript?: string | undefined;
+    shouldSend?: (() => boolean) | undefined;
 }) => Promise<EventsManagerWithBeacon<Type>>;
 //# sourceMappingURL=events-manager.d.ts.map

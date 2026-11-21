@@ -4,8 +4,10 @@ export declare class InMemoryEventsStore extends BaseEventsStore<number> {
     private finalizedSequences;
     private sequences;
     private sequenceId;
+    private emptyFilteredCount;
     private resetCurrentSequence;
     private addSequence;
+    private maybeLogEmptyFiltered;
     getSequencesToSend(): Promise<SendingSequencesReturn<number>[] | undefined>;
     storeCurrentSequence(sessionId: string | number): Promise<SendingSequencesReturn<number> | undefined>;
     addEventToCurrentSequence(sessionId: number, event: string): Promise<SendingSequencesReturn<number> | undefined>;

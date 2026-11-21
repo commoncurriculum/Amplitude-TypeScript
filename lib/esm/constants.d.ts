@@ -17,29 +17,44 @@ export declare const SESSION_REPLAY_SERVER_URL = "https://api-sr.amplitude.com/s
 export declare const SESSION_REPLAY_EU_URL = "https://api-sr.eu.amplitude.com/sessions/v2/track";
 export declare const SESSION_REPLAY_STAGING_URL = "https://api-sr.stag2.amplitude.com/sessions/v2/track";
 export declare const STORAGE_PREFIX: string;
-export declare const MAX_EVENT_LIST_SIZE = 700000;
+export declare const MAX_EVENT_LIST_SIZE = 2000000;
+export declare const DEFAULT_MAX_PERSISTED_EVENTS_SIZE_BYTES = 6000000;
 export declare const MAX_SINGLE_EVENT_SIZE: number;
 export declare const WAF_PAYLOAD_TOO_LARGE_PATTERN: RegExp;
 export declare const INTERACTION_MIN_INTERVAL = 30000;
 export declare const INTERACTION_MAX_INTERVAL = 60000;
 export declare const MIN_INTERVAL = 500;
 export declare const MAX_INTERVAL: number;
+export declare const DEFAULT_FLUSH_MIN_INTERVAL_MS = 1000;
+export declare const DEFAULT_FLUSH_MAX_INTERVAL_MS: number;
 export declare const MAX_IDB_STORAGE_LENGTH: number;
 export declare const KB_SIZE = 1024;
 export declare const MAX_URL_LENGTH = 1000;
 export declare const RETRY_TIMEOUT_MS = 1000;
 export declare const MAX_KEEPALIVE_BYTES: number;
+export declare const SEND_TIMEOUT_MS = 10000;
 export declare const EVENT_SKIPPED_HEADER = "X-Session-Replay-Event-Skipped";
 export declare const EVENT_SKIP_CODE_THROTTLED = "429";
 export declare const EVENT_SKIP_CODE_INVALID_RANGE = "4004";
 export declare const EVENT_SKIP_CODE_CAPTURE_DISABLED = "4005";
 export declare const THROTTLED_FLUSH_PAUSE_MS = 60000;
+export declare const MERGE_AFTER_THROTTLE_SOFT_CAP: number;
 export declare const CROSS_ORIGIN_IFRAME_MESSAGE_TYPE = "amplitude-sr-iframe";
 export declare enum CustomRRwebEvent {
     GET_SR_PROPS = "get-sr-props",
     DEBUG_INFO = "debug-info",
     FETCH_REQUEST = "fetch-request",
     METADATA = "metadata",
-    TARGETING_DECISION = "targeting-decision"
+    TARGETING_DECISION = "targeting-decision",
+    /**
+     * Emitted once per session, on the first send that passes the min_session_duration_ms
+     * gate. Captures how many sends were suppressed before passing and the elapsed time
+     * spent below the threshold. Lets backend ingestion diff intended replay count vs
+     * actual ingestion so on-call can spot start-time-tracking regressions.
+     *
+     * Sessions that bounce before crossing the threshold never emit this event by design
+     * (the whole payload is suppressed); their absence is the signal.
+     */
+    REPLAY_GATE_DECISION = "replay-gate-decision"
 }
 //# sourceMappingURL=constants.d.ts.map

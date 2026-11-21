@@ -1,3 +1,4 @@
+import { type BodyCaptureRuleConfig } from './network-body-capture';
 export type ResponseBodyStatus = 'captured' | 'truncated' | 'skipped_binary' | 'error';
 export interface NetworkRequestEvent {
     timestamp: number;
@@ -18,8 +19,8 @@ export interface NetworkRequestEvent {
 }
 export type NetworkEventCallback = (event: NetworkRequestEvent) => void;
 export interface NetworkBodyConfig {
-    request?: boolean;
-    response?: boolean;
+    request?: BodyCaptureRuleConfig;
+    response?: BodyCaptureRuleConfig;
     maxBodySizeBytes?: number;
 }
 export interface NetworkConfig {

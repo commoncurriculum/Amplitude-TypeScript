@@ -50,6 +50,8 @@ export declare class SessionReplayEventsIDBStore extends BaseEventsStore<number>
     private readonly consecutiveFailureThreshold;
     private consecutiveFailures;
     private hasTriggeredFallback;
+    private emptyFilteredCount;
+    private maybeLogEmptyFiltered;
     constructor(args: InstanceArgs);
     private recordFailure;
     private recordSuccess;

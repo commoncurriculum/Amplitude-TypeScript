@@ -22,6 +22,8 @@ export declare class BeaconTransport<T> {
     private readonly basePageUrl;
     private readonly context;
     private readonly apiKey;
+    private readonly handleSendEvents?;
+    private readonly loggerProvider?;
     constructor(context: Omit<SessionReplayDestinationSessionMetadata, 'deviceId'>, config: SessionReplayJoinedConfig);
     send(deviceId: string, payload: T): void;
 }
