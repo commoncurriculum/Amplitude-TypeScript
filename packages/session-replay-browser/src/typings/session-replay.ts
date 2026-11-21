@@ -1,6 +1,7 @@
 import { AmplitudeReturn, ServerZone } from '@amplitude/analytics-core';
 import type { Event } from '@amplitude/analytics-types';
 import { SessionReplayJoinedConfig, SessionReplayLocalConfig, SessionReplayVersion } from '../config/types';
+import type { RecordFunction } from '../utils/rrweb';
 
 export interface SessionReplayTargetingInput {
   event?: Event;
@@ -93,7 +94,13 @@ export interface SessionIdentifiers {
   sessionReplayId?: string;
 }
 
-export type SessionReplayOptions = Omit<Partial<SessionReplayLocalConfig & SessionIdentifiers>, 'apiKey'>;
+export type SessionReplayOptions = Omit<Partial<SessionReplayLocalConfig & SessionIdentifiers>, 'apiKey'> & {
+  /**
+   * An rrweb the app runs itself, used in place of `@amplitude/rrweb-record`. It is called with the
+   * same options, privacy settings included, and must apply them.
+   */
+  record?: RecordFunction;
+};
 
 export interface AmplitudeSessionReplay {
   init: (apiKey: string, options: SessionReplayOptions) => AmplitudeReturn<void>;
